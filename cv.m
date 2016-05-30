@@ -17,6 +17,7 @@ end
 files = dir('*.jpg');
 for file = files'
     a = imread(file.name);
-    a_crop = rgb2gray(a(1460:2173, 1600:3645,:));
-    imwrite(a_crop,strcat('aa_',file.name));
+    a_crop = rgb2gray(a(1460:2173, 1800:3245,:));
+    a_crop = imresize(a_crop, 0.04);
+    imwrite(a_crop,strcat('crop_',file.name));
 end
