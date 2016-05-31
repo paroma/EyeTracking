@@ -21,6 +21,7 @@ class DataSet(object):
     Construct a DataSet.
     """
     self._images = images
+    self._num_examples = len(images)
     self._labels = labels
     self._epochs_completed = 0
     self._index_in_epoch = 0
