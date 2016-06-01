@@ -52,8 +52,10 @@ def parse_label_decomposed(filename):
   assert filename.endswith('.jpg')
   filename = filename[:-4]
   tokens = filename.strip().split('_')
-  values = [0] * 21
+  values = [0.] * 21
   i = len(hvals) * vvals.index(tokens[4]) + hvals.index(tokens[5])
+  #values = [0.] * 3
+  #i = vvals.index(tokens[4])
   values[i] = 1
   ret = numpy.array(values)
   print ret
