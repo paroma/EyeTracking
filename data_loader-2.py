@@ -40,8 +40,12 @@ LABEL_DATA_FILENAME = "labels.npydata"
 
 # The label values. Each value is associated with a bit shift, which
 # can be parsed and unparsed using bitwise operators
-vvals = ['0V', '10V', '-10V']
-hvals = ['-15H', '-10H', '-5H', '0H', '5H', '10H', '15H']
+
+#vvals = ['0V', '10V', '-10V']
+#hvals = ['-15H', '-10H', '-5H', '0H', '5H', '10H', '15H']
+
+vvals = [str(32 * x) for x in xrange(1, 60)]
+hvals = [str(32 * x) for x in xrange(1, 32)]
 allvals = vvals + hvals
 bits = [0x1 << n for n in xrange(len(vvals) + len(hvals))]
 
@@ -52,13 +56,12 @@ def parse_label_decomposed(filename):
   assert filename.endswith('.jpg')
   filename = filename[:-4]
   tokens = filename.strip().split('_')
-  values = [0.] * 21
-  i = len(hvals) * vvals.index(tokens[4]) + hvals.index(tokens[5])
+  values = [0.] * 1829
+  i = len(hvals) * vvals.index(tokens[1]) + hvals.index(tokens[2])
   #values = [0.] * 3
   #i = vvals.index(tokens[4])
   values[i] = 1
   ret = numpy.array(values)
-  print ret
   return ret
 
 def parse_label(filename):
@@ -68,7 +71,7 @@ def parse_label(filename):
   assert filename.endswith('.jpg')
   filename = filename[:-4]
   tokens = filename.strip().split('_')
-  val = shiftmap[tokens[4]] | shiftmap[tokens[5]]
+  val = shiftmap[tokens[1]] | shiftmap[tokens[2]]
   return val
 
 def unumparse_label(val):
