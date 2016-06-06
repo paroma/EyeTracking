@@ -58,9 +58,12 @@ def parse_label_decomposed(filename):
   tokens = filename.strip().split('_')
   values = [0.] * 1829
   i = len(hvals) * vvals.index(tokens[1]) + hvals.index(tokens[2])
-  #values = [0.] * 3
+  print([tokens[1],tokens[2]])
+
+#values = [0.] * 3
   #i = vvals.index(tokens[4])
-  values[i] = 1
+
+  values[i] = 1.0
   ret = numpy.array(values)
   return ret
 
